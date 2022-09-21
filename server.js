@@ -1,7 +1,6 @@
 import express from "express";
-import morgan  from "morgan";
-import path from "path";
-import router from "./routes"
+import morgan from "morgan";
+import router from "./routes";
 // TODO: import router from routes/
 
 // Create the express application
@@ -26,8 +25,7 @@ app.use((error, request, response, next) => {
   console.error(error);
   response.status(500);
   response.json({ success: false, msg: error.message });
-})
-
+});
 
 app.listen(5000, () => {
   console.log(`Server listening at http://localhost/5000`);
@@ -45,5 +43,3 @@ app.listen(5000, () => {
 /*app.listen(config.port, () => {
   console.log(`Server listening on port ${config.port}...`);
 });*/
-
-
