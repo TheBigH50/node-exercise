@@ -56,11 +56,17 @@ app.get("/hobbit", (request, response) => {
   }
 });
 
-app.post("/hobbit", (request, response) => {
+//URL with params
+
+app.post("/hobbit/:name", (request, response) => {
   try {
     // access the request body
     let newHobbit = request.body;
-    response.json({ success: true, hobbit: newHobbit });
+    // Access the request url parameters
+    let urlParams = request.params;
+    // Access the request query parameters
+    let queryParams = request.query
+    response.json({ success: true, hobbit: newHobbit, urlParams, queryParams });
   } catch (error) {
     console.error(error);
     response.status(500);
