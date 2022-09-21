@@ -1,10 +1,11 @@
 import express from "express";
+import path from "path";
 
 const router = express.Router();
 
 // Absolute file paths
-const homeFile = path.join(__dirname, "./public/index.html");
-const aboutFile = path.join(__dirname, "./public/about.html");
+const homeFile = path.join(__dirname, "../public/index.html");
+const aboutFile = path.join(__dirname, "../public/about.html");
 
 // Routes are checked in order written (home, about, hobbits)
 // Create a GET request for the home and about routes

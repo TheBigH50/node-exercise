@@ -1,6 +1,18 @@
 import express from "express";
+import db from "../mockdb";
 
-const router = express.Routes();
+const router = express.Router();
+
+// Get all users from the DB
+
+router.get("/users", async (req, res, next) => {
+    try {
+    let data = await db.getAll();
+    res.json(data)
+    } catch (error) {
+        next(error);
+    }
+});
 
 // Route URL with params
 // Route with optional params = ?
