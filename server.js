@@ -56,9 +56,9 @@ app.get("/hobbit", (request, response) => {
   }
 });
 
-//URL with params
-
-app.post("/hobbit/:name", (request, response) => {
+// Route URL with params
+// Route with optional params = ?
+app.post("/hobbit/:name?", (request, response) => {
   try {
     // access the request body
     let newHobbit = request.body;
