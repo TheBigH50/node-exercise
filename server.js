@@ -1,16 +1,24 @@
 import express from "express";
 import config from "./config";
+import path from "path";
 // TODO: import router from routes/
 
 const app = express();
 
+
+// Absolute file paths
+const homeFile = path.join(__dirname, "./public/index.html");
+const aboutFile = path.join(__dirname, "./public/about.html");
+
+
 // Create a GET request for the home and about routes
 app.get("/", (request, response) => {
-  response.send('home');
+  // sendFile takes in an ABSOLUTE filepath
+  response.sendFile(homeFile);
 });
 
 app.get("/about", (request, response) => {
-  response.send('about');
+  response.sendFile(aboutFile);
 });
 
 //app.use(express.json());
