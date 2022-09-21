@@ -17,6 +17,9 @@ const aboutFile = path.join(__dirname, "./public/about.html");
 
 app.use(morgan("dev"));
 
+// Parse incoming request bodies
+app.use(express.json());
+
 // Routes are checked in order written (home, about, hobbits)
 // Create a GET request for the home and about routes
 app.get("/", (request, response) => {
@@ -50,6 +53,18 @@ app.get("/hobbit", (request, response) => {
     response.status(500);
     response.json({ success: false, msg: error.message });
     
+  }
+});
+
+app.post("/hobbit", (request, response) => {
+  try {
+    // access the request body
+    let newHobbit = request.body;
+    response.json({ success: true, hobbit: newHobbit });
+  } catch (error) {
+    console.error(error);
+    response.status(500);
+    response.json({ success: false, msg: error.message });    
   }
 });
 
