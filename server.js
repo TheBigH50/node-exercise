@@ -16,8 +16,9 @@ app.get("/", (request, response) => {
     response.sendFile(homeFile);
   } catch (error) {
     console.error(error);
-    response.json({ success: false, msg: error.message });
     response.status(500);
+    response.json({ success: false, msg: error.message });
+    
   }
 });
 
@@ -26,18 +27,21 @@ app.get("/about", (request, response) => {
     response.sendFile(aboutFile);
   } catch (error) {
     console.error(error);
-    response.json({ success: false, msg: error.message });
     response.status(500);
+    response.json({ success: false, msg: error.message });
+    
   }
 });
 
 app.get("/hobbit", (request, response) => {
   try {
+    throw new Error("broken");
     response.sendFile(path.join(__dirname, "./public/hobbit.json"));
   } catch (error) {
     console.error(error);
-    response.json({ success: false, msg: error.message });
     response.status(500);
+    response.json({ success: false, msg: error.message });
+    
   }
 });
 
