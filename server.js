@@ -17,6 +17,7 @@ app.get("/", (request, response) => {
   } catch (error) {
     console.error(error);
     response.json({ success: false, msg: error.message });
+    response.status(500);
   }
 });
 
@@ -26,6 +27,7 @@ app.get("/about", (request, response) => {
   } catch (error) {
     console.error(error);
     response.json({ success: false, msg: error.message });
+    response.status(500);
   }
 });
 
