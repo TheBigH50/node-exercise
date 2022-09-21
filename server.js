@@ -31,6 +31,16 @@ app.get("/about", (request, response) => {
   }
 });
 
+app.get("/hobbit", (request, response) => {
+  try {
+    response.sendFile(path.join(__dirname, "./public/hobbit.json"));
+  } catch (error) {
+    console.error(error);
+    response.json({ success: false, msg: error.message });
+    response.status(500);
+  }
+});
+
 //app.use(express.json());
 
 // TODO: use the imported router to handle all requests
