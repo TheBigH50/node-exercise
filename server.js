@@ -44,6 +44,10 @@ app.get("/hobbit", (request, response) => {
   }
 });
 
+app.listen(5000, () => {
+  console.log(`Server listening at http://localhost/5000`);
+});
+
 //app.use(express.json());
 
 // TODO: use the imported router to handle all requests
@@ -57,6 +61,4 @@ app.get("/hobbit", (request, response) => {
   console.log(`Server listening on port ${config.port}...`);
 });*/
 
-app.listen(5000, () => {
-  console.log(`Server listening at http://localhost/5000`);
-});
+
