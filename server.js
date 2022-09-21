@@ -13,14 +13,14 @@ app.get("/about", (request, response) => {
   response.send('about');
 });
 
-app.use(express.json());
+//app.use(express.json());
 
 // TODO: use the imported router to handle all requests
 
-app.use((err, req, res, next) => {
+/*app.use((err, req, res, next) => {
   console.error(err);
   res.json({ name: err.name, msg: err.message });
-});
+});*/
 
 /*app.listen(config.port, () => {
   console.log(`Server listening on port ${config.port}...`);
