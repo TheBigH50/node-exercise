@@ -13,12 +13,23 @@ const aboutFile = path.join(__dirname, "./public/about.html");
 
 // Create a GET request for the home and about routes
 app.get("/", (request, response) => {
+  try{
   // sendFile takes in an ABSOLUTE filepath
   response.sendFile(homeFile);
+  } catch (error) {
+    console.error(error);
+    response.json({ success: false, msg: error.message});
+  }
 });
 
 app.get("/about", (request, response) => {
+  try {
+    
   response.sendFile(aboutFile);
+  } catch (error) {
+    console.error(error);
+    response.json({ success: false, msg: error.message});
+  }
 });
 
 //app.use(express.json());
