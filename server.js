@@ -35,7 +35,6 @@ app.get("/about", (request, response) => {
 
 app.get("/hobbit", (request, response) => {
   try {
-    throw new Error("broken");
     response.sendFile(path.join(__dirname, "./public/hobbit.json"));
   } catch (error) {
     console.error(error);
