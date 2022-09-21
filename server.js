@@ -27,10 +27,7 @@ app.get("/", (request, response) => {
     // sendFile takes in an ABSOLUTE filepath
     response.sendFile(homeFile);
   } catch (error) {
-    console.error(error);
-    response.status(500);
-    response.json({ success: false, msg: error.message });
-    
+    next(error);
   }
 });
 
@@ -38,10 +35,7 @@ app.get("/about", (request, response) => {
   try {
     response.sendFile(aboutFile);
   } catch (error) {
-    console.error(error);
-    response.status(500);
-    response.json({ success: false, msg: error.message });
-    
+    next(error);
   }
 });
 
@@ -49,11 +43,7 @@ app.get("/hobbit", (request, response) => {
   try {
     response.sendFile(path.join(__dirname, "./public/hobbit.json"));
   } catch (error) {
-    console.error(error);
-    response.status(500);
-    response.json({ success: false, msg: error.message });
-    
-  }
+    next(error);
 });
 
 // Route URL with params
@@ -68,11 +58,16 @@ app.post("/hobbit/:name?", (request, response) => {
     let queryParams = request.query
     response.json({ success: true, hobbit: newHobbit, urlParams, queryParams });
   } catch (error) {
-    console.error(error);
-    response.status(500);
-    response.json({ success: false, msg: error.message });    
+    next(error);
   }
 });
+
+// Create custom middleware to handle errors
+app.use((error, request, response, next) => {
+  console.error(error);
+  response.status(500);
+  response.json({ success: false, msg: error.message });
+})
 
 app.listen(5000, () => {
   console.log(`Server listening at http://localhost/5000`);
