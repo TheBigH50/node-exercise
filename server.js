@@ -22,7 +22,7 @@ app.use(express.json());
 
 // Routes are checked in order written (home, about, hobbits)
 // Create a GET request for the home and about routes
-app.get("/", (request, response) => {
+app.get("/", (request, response, next) => {
   try {
     // sendFile takes in an ABSOLUTE filepath
     response.sendFile(homeFile);
@@ -31,7 +31,7 @@ app.get("/", (request, response) => {
   }
 });
 
-app.get("/about", (request, response) => {
+app.get("/about", (request, response, next) => {
   try {
     response.sendFile(aboutFile);
   } catch (error) {
@@ -39,16 +39,17 @@ app.get("/about", (request, response) => {
   }
 });
 
-app.get("/hobbit", (request, response) => {
+app.get("/hobbit", (request, response, next) => {
   try {
     response.sendFile(path.join(__dirname, "./public/hobbit.json"));
   } catch (error) {
     next(error);
+  }
 });
 
 // Route URL with params
 // Route with optional params = ?
-app.post("/hobbit/:name?", (request, response) => {
+app.post("/hobbit/:name?", (request, response, next) => {
   try {
     // access the request body
     let newHobbit = request.body;
