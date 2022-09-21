@@ -8,12 +8,10 @@ router.get("/:id?", async (req, res, next) => {
     let { id } = req.params;
     let data;
     if (id == true) {
-      data = await db.getOne(id);
-      res.json(data);
+      data = await db.getOne(id);     
     } else {
       data = await db.getAll();
-      res.json(data);
-    }
+      } res.json(data);
   } catch (error) {
     next(error);
   }
@@ -21,7 +19,7 @@ router.get("/:id?", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    // TODO
+    let { id } = req.params
   } catch (error) {
     next(error);
   }
