@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import config from "./config";
 import router from "./index";
 
@@ -10,6 +10,7 @@ app.use(router)
 
 app.use((err, req, res, next) => {
   console.error(err);
+  response.status(500);
   res.json({ name: err.name, msg: err.message });
 });
 
