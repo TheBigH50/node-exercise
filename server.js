@@ -1,5 +1,5 @@
 import express from "express";
-import config from "./config";
+import morgan  from "morgan";
 import path from "path";
 // TODO: import router from routes/
 
@@ -9,6 +9,15 @@ const app = express();
 const homeFile = path.join(__dirname, "./public/index.html");
 const aboutFile = path.join(__dirname, "./public/about.html");
 
+// example middleware for ANY request
+/*app.use((req, res, next) => {
+  console.log(`${req.url}\t${req.method}\t${new Date().toLocaleTimeString()}`)
+  next();
+})*/
+
+app.use(morgan("dev"));
+
+// Routes are checked in order written (home, about, hobbits)
 // Create a GET request for the home and about routes
 app.get("/", (request, response) => {
   try {
