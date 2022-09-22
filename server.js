@@ -5,7 +5,7 @@ import config from "./config";
 
 const app = express();
 
-app.use(morgan("dev"))
+app.use(morgan("common"))
 
 app.use(express.json());
 
