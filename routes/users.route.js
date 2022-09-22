@@ -1,4 +1,4 @@
-import express from "express";
+import express, { response } from "express";
 import db from "./mockdb";
 
 const router = express.Router();
@@ -8,10 +8,11 @@ router.get("/:id?", async (req, res, next) => {
     let { id } = req.params;
     let data;
     if (id == true) {
-      data = await db.getOne(id);     
+      data = await db.getOne(id);
     } else {
       data = await db.getAll();
-      } res.json(data);
+    }
+    res.json(data);
   } catch (error) {
     next(error);
   }
@@ -19,7 +20,9 @@ router.get("/:id?", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { id } = req.params
+    let { newUser } = req.body;
+    let data = await db.add(newUser);
+    response.json({ success: true, data: newUser });
   } catch (error) {
     next(error);
   }
