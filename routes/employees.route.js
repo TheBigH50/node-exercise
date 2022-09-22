@@ -8,9 +8,9 @@ router.get("/:id?", async (req, res, next) => {
       let { id } = req.params;
       let data;
       if (id) {
-        data = await db.findOne(parseInt(id));
+        [data] = await employees.findOne(parseInt(id));
       } else {
-        data = await db.findAll();
+        data = await employees.findAll();
       }
       res.json(data);
     } catch (error) {
