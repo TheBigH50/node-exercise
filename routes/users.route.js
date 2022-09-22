@@ -1,5 +1,5 @@
-import express, { response } from "express";
-import db from "./mockdb";
+import express from "express";
+import db from "../mockdb";
 
 const router = express.Router();
 
@@ -20,9 +20,9 @@ router.get("/:id?", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    let { newUser } = req.body;
+    let newUser = req.body;
     let data = await db.add(newUser);
-    response.json({ success: true, data: newUser });
+    res.json(data);
   } catch (error) {
     next(error);
   }
@@ -30,7 +30,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    // TODO
+    
   } catch (error) {
     next(error);
   }
