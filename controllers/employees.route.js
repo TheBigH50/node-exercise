@@ -8,7 +8,7 @@ router.get("/:id?", async (req, res, next) => {
       let { id } = req.params;
       let data;
       if (id) {
-        data = await db.findOne(id);
+        data = await db.findOne(parseInt(id));
       } else {
         data = await db.findAll();
       }
