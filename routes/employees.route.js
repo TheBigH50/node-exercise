@@ -18,4 +18,34 @@ router.get("/:id?", async (req, res, next) => {
     }
   });
   
+  router.post("/", async (req, res, next) => {
+    try {
+      let newEmployee = req.body;
+      let data = await employees.addOne(newEmployee);
+      res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  });
+  
+  router.put("/:id", async (req, res, next) => {
+    try {
+      let { id } = req.params;
+      let updatedEmployee = req.body
+      let data = await employees.updateOne(updatedEmployee, id);
+      res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  });
+  
+  router.deleteOne("/:id", async (req, res, next) => {
+    try {
+      let { id } = req.params;
+      let data = await employees.remove(id);
+      res.json(data);
+    } catch (error) {
+      next(error);
+    }
+  });
   export default router;
