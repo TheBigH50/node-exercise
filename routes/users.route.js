@@ -41,7 +41,9 @@ router.put("/:id", async (req, res, next) => {
 
 router.delete("/:id", async (req, res, next) => {
   try {
-    // TODO
+    let { id } = req.params;
+    let data = await db.remove(id);
+    res.json(data);
   } catch (error) {
     next(error);
   }
