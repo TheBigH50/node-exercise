@@ -39,10 +39,10 @@ router.get("/:id?", async (req, res, next) => {
     }
   });
   
-  router.deleteOne("/:id", async (req, res, next) => {
+  router.delete("/:id", async (req, res, next) => {
     try {
       let { id } = req.params;
-      let data = await employees.remove(id);
+      let data = await employees.deleteOne(id);
       res.json(data);
     } catch (error) {
       next(error);
